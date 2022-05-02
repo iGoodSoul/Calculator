@@ -28,8 +28,8 @@ public class UserDAO {
             ClassNotFoundException {
 
 
-        String sql = "SELECT * FROM users WHERE login = ? and password = ?";
-        PreparedStatement statement = connection.prepareStatement(sql);
+        String sqlLog = "SELECT * FROM users WHERE login = ? and password = ?";
+        PreparedStatement statement = connection.prepareStatement(sqlLog);
         statement.setString(1, login);
         statement.setString(2, password);
 
@@ -40,7 +40,7 @@ public class UserDAO {
         if (result.next()) {
             user = new User();
         }
-
+        statement.close();
         connection.close();
 
         return user;
@@ -49,20 +49,20 @@ public class UserDAO {
             ClassNotFoundException {
 
 
-        String sql = "SELECT * FROM users WHERE login = ? and password = ?";
-        PreparedStatement statement = connection.prepareStatement(sql);
+        String sqlReg = "Insert Into users (login,password,name) VALUES(?,?,?);";
+        PreparedStatement statement = connection.prepareStatement(sqlReg);
         statement.setString(1, login);
         statement.setString(2, password);
         statement.setString(3, name);
+       int result = statement.executeUpdate();
 
-        ResultSet result = statement.executeQuery();
 
         User user = null;
 
-        if (result.next()) {
-            user = new User();
-        }
-
+    if(result == 3) {
+        user = new User();
+    }
+        statement.close();
         connection.close();
 
         return user;
