@@ -8,9 +8,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Hello</title>
+    <title>User Account</title>
 </head>
 <body>
+<h1>Hello</h1>
+<a href = "/user_history">History of operations</a><br>
+<a href="/calc">Calculator</a><br>
+<a href="/logout">Logout</a>
 
 </body>
 </html>

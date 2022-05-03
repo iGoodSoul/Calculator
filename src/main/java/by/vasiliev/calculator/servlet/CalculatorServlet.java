@@ -21,8 +21,18 @@ public class CalculatorServlet extends HttpServlet {
         double num2 = Double.parseDouble(req.getParameter("num2"));
         String operation = req.getParameter("operation");
         switch (operation) {
-            case "sum":
+            case "+":
                 req.setAttribute("result", num1 + num2);
+                break;
+            case "*":
+                req.setAttribute("result", num1 * num2);
+                break;
+            case "/":
+                req.setAttribute("result", num1 / num2);
+                break;
+            case "-":
+                req.setAttribute("result", num1 - num2);
+                break;
         }
 
         getServletContext().getRequestDispatcher("/pages/calc.jsp").forward(req, resp);
